@@ -55,8 +55,6 @@ if (isset($_POST['send'])){
 				</p>
 			</form>
 			</div>
-			<pre>
-			</pre>
 		</div>
 	</div>
 
