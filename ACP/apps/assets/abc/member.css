@@ -25,10 +25,12 @@ h1 {
 
 /* form setting */
 form {
-	margin-left: 45px;
+	margin-left: 2em;
 }
 label {
-	display: block;
+	display: block; 
+	font-weight: lighter;
+	padding-top: 2em;
 }
 input {
 	width: 20em;
@@ -43,7 +45,7 @@ textarea {
 	height: 20em;
 }
 .warning {
-	font-weight: boldf;
+	font-weight: lighter;
 	color: #ff0000;
 }
 
