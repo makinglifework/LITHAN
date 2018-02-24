@@ -15,13 +15,38 @@ body {
     background-attachment: fixed; 
 }
 
-h1{
+h1 {
   font-family:'Arial';
   font-weight:bold;
   font-style:normal;
   font-size:32px;
   text-align:left;
 }
+
+/* form setting */
+form {
+	margin-left: 45px;
+}
+label {
+	display: block;
+}
+input {
+	width: 20em;
+}
+input[type=submit] {
+	width: auto;	
+	background-color: #1499dc;
+	border: none;
+}
+textarea {
+	width: 30em;
+	height: 20em;
+}
+.warning {
+	font-weight: boldf;
+	color: #ff0000;
+}
+
 
 div.jumbotron {
 	background-color: #ffffff;
