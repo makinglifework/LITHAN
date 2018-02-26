@@ -36,6 +36,7 @@ use core\acp\UserProfile;
         //   $member->is_active = $data["is_active"];
             $member->bio = $data['bio'];
             $member->user_photo_path = $data['user_photo_path'];
+            $member->notification = $data['notification'];
             return $member;
         }
         
@@ -70,7 +71,7 @@ use core\acp\UserProfile;
         public static function getUserProfileByUserId($id) {
             $conn = DBUtil::getDbConnection();
             $id = mysqli_escape_string($conn, $id);
-            $sql = "SELECT user_id, firstname, lastname, email, password, user_job, user_edu, institution, user_photo_path, bio FROM CP_TB_USER WHERE user_id=$id";
+            $sql = "SELECT user_id, firstname, lastname, email, password, user_job, user_edu, institution, user_photo_path, bio, notification FROM CP_TB_USER WHERE user_id=$id";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -84,7 +85,7 @@ use core\acp\UserProfile;
         public static function getUserProfileByEmail($email) {
             $conn = DBUtil::getDbConnection();
             $id = mysqli_escape_string($conn, $email);
-            $sql = "SELECT user_id, firstname, lastname, email, password, user_job, user_edu, institution, user_photo_path, bio FROM CP_TB_USER WHERE email='$email' && is_active=1";
+            $sql = "SELECT user_id, firstname, lastname, email, password, user_job, user_edu, institution, user_photo_path, bio, notification FROM CP_TB_USER WHERE email='$email' && is_active=1";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) { 
@@ -97,7 +98,7 @@ use core\acp\UserProfile;
         
         public static function updateUserProfile(UserProfile $up) {
             $conn = DBUtil::getDbConnection();
-            $sql = "call usp_update_userprofile(?,?,?,?,?,?,?,?,?,?)";
+            $sql = "call usp_update_userprofile(?,?,?,?,?,?,?,?,?,?,?)";
             $id = $up->id;
             $firstname = $up->firstname;
             $lastname = $up->lastname;
@@ -108,8 +109,9 @@ use core\acp\UserProfile;
             $institue = $up->institute;
             $user_photo_path = $up->user_photo_path;
             $bio = $up->bio;
+            $notification = $up->notification;
             $dbcmd = $conn->prepare($sql);
-            $dbcmd->bind_param('isssssssss', $id, $firstname, $lastname, $email, $password, $userjob, $useredu, $institue, $user_photo_path, $bio);
+            $dbcmd->bind_param('isssssssssi', $id, $firstname, $lastname, $email, $password, $userjob, $useredu, $institue, $user_photo_path, $bio, $notification);
             $dbcmd->execute();
             if ($dbcmd->errno !=0) {
                 printf("Error: %s. \n", $dbcmd->error);
