@@ -22,6 +22,7 @@
         public $password;
         public $bio;
         public $user_photo_path;
+        public $notification;
     }
     
 ?>
