@@ -11,7 +11,7 @@ use core\acp\User;
 use core\acp\UserProfile;
 
 
-    $id = $fn = $ln = $eml = $bio = $user_photo_path = $display_message = "";
+    $id = $fn = $ln = $eml = $bio = $user_photo_path = $notification = $display_message = "";
     $secret = $confirm_secret = $e_secret = $e_confirm_secret = "";
     $userjob = $e_userjob = $useredu = $e_useredu = $institute = $e_institute = "";
     $e_fn = $e_ln = $e_eml = $e_bio = $e_file = "";
@@ -31,6 +31,7 @@ use core\acp\UserProfile;
             $institute = $up->institute;
             $user_photo_path = $up->user_photo_path;
             $bio = $up->bio;
+            $notification = $up->notification;
         }
     }
     
@@ -141,6 +142,13 @@ use core\acp\UserProfile;
                     $e_file = "* Invalid image format!";
                 }
             }
+            
+            if ($_POST['notification'] == 1) {
+                $notification = 1;
+            } else {
+                $notification = 0;
+            }
+            
         }
         
         if (empty($e_fn) && empty($e_ln) && empty($e_eml) && empty($e_bio) && empty($e_file) && 
@@ -158,6 +166,7 @@ use core\acp\UserProfile;
             $up->institute = $institute;
             $up->bio = $bio;
             $up->user_photo_path = $user_photo_path;
+            $up->notification = $notification;
             $um = new UserManager();
             try {
                 $result = $um->updateUserProfile($up);
@@ -239,9 +248,13 @@ use core\acp\UserProfile;
                         	<label id="lblBio" for="bio">Bio: &nbsp;</label><br>
                             <textarea  class="form-control" cols="80" rows="10" id="bio" name="bio" ><?= $bio; ?></textarea>
                         </div>
+                        
+                       <div class="form-group">                      
+                            <input type="checkbox" id="notification" name="notification" value = "1" <?php if ($notification == '1') {echo 'checked';} ?>> Email Notification
+                        </div>
+                        
         
             			<input class="tab" type = "submit" name="update" value="Update">
-            			<input type = "submit" name="clear" value="Clear">
         
             		</fieldset>
             		<span class = "requiredfield"><?php if (!empty($display_message)) : echo $display_message; endif ?></span>
