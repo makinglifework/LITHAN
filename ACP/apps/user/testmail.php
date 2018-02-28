@@ -13,10 +13,10 @@ try {
     //Server settings
     $mail->SMTPDebug = 2;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'lithantesters@gmail.com';                 // SMTP username
-    $mail->Password = '@B52#13s2020.';                           // SMTP password
+    $mail->Password = '$lithanese@2020.';                           // SMTP password
     $mail->SMTPSecure = 'SSL';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
     

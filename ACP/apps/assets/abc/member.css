@@ -28,17 +28,12 @@ form {
 	margin-left: 2em;
 }
 label {
-	display: block; 
+	/* display: block; */
 	font-weight: lighter;
 	padding-top: 2em;
 }
 input {
-	width: 20em;
-}
-input[type=submit] {
-	width: auto;	
-	background-color: #1499dc;
-	border: none;
+	width: auto;
 }
 textarea {
 	width: 30em;
