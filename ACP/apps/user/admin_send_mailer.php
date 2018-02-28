@@ -19,15 +19,12 @@ if (isset($_POST['send'])){
     
     require '../includes/process_email.php';
     
-    echo "Sending email now..";
-    echo $email;
-    
     require '../PHPMailer/PHPMailer.php';
     require '../PHPMailer/Exception.php';
     require '../PHPMailer/SMTP.php';
     
     
-    $mail = new PHPMailer(true);        // Exception enabled
+    $mail = new PHPMailer(true);                              // Exception enabled
     
     try {
         // Configure email server settings
@@ -43,10 +40,8 @@ if (isset($_POST['send'])){
         //Recipients
         $mail->setFrom('lithantesters@gmail.com', 'DNC Administrator');
         $mail->addAddress($email);     // Add a recipient
-        //$mail->addAddress('lydiatgl@gmail.com');    // Name is optional
         $mail->addReplyTo('lithantesters@gmail.com', 'DNC Administrator');
-        //$mail->addCC('cc@example.com');
-        //$mail->addBCC('bcc@example.com');
+
         
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
@@ -56,7 +51,6 @@ if (isset($_POST['send'])){
         
         $status = $mail->send();
         echo 'Message has been sent';
-        echo '<br>'.$status;
         
     } catch(Exception $e) {
         echo 'Message could not be sent.';
@@ -68,7 +62,7 @@ if (isset($_POST['send'])){
 ?>
 	<div class="container">
 		<h1 >eMailing</h1>
-    	<p>Notification service to members of Developers Network Connection</p>
+    	<p>Notification service to member of Developers Network Connection</p>
 		<div class="row">
     		<div>
 			<form method="post" action = "<?= $_SERVER['PHP_SELF']; ?>">
