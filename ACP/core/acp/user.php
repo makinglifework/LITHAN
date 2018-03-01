@@ -25,4 +25,10 @@
         public $notification;
     }
     
+    class EmailList {
+        public $firstname;
+        public $lastname;
+        public $email;
+    }
+    
 ?>

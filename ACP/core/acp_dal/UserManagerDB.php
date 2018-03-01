@@ -5,9 +5,10 @@
     require_once '../../core/acp/user.php';
     
     use core\util\DBUtil;
-    use core\acp\User;
-use core\acp\UserProfile;
-                                                
+    use core\acp\User;    
+    use core\acp\UserProfile;
+    use core\acp\EmailList;
+                                                                
     class UserManagerDB {
         
         public static function fill($data) {
@@ -38,6 +39,15 @@ use core\acp\UserProfile;
             $member->user_photo_path = $data['user_photo_path'];
             $member->notification = $data['notification'];
             return $member;
+        }
+        
+        public static function fill_emaillist($data) {
+            $ml = new EmailList();
+            $ml->firstname = $data["firstname"];
+            $ml->lastname = $data["lastname"];
+            $ml->email = $data["email"];
+            
+            return $ml;
         }
         
         public static function validateUserLogin($email, $secret) {
@@ -174,6 +184,20 @@ use core\acp\UserProfile;
             } else {
                 return false;
             }
+        }
+        
+        public static function getEmailList() {
+            $conn = DBUtil::getDbConnection();
+            $sql = "SELECT firstname, lastname, email FROM CP_TB_USER WHERE notification=1  && is_active=1";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $member = self::fill_emaillist($row);
+                    $members[] = $member;
+                }
+                return $members;
+            }
+            $conn->close();
         }
 
              

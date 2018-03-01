@@ -43,6 +43,10 @@ use core\acp\UserProfile;
             return UserManagerDB::deleteSelectedUser($list);
         }
         
+        public function getEmailList() {
+            return UserManagerDB::getEmailList();
+        }
+        
         
     }    // Class User Manager
 ?>
