@@ -76,7 +76,7 @@
                        echo "  <td class='center'><a target='_blank' href='show_userprofile.php?id=".$member->id."'>view</a></td>";
                        echo "</tr>";
                    }                 
-               } 
+               }
                echo "<span class='requiredfield'>Result: ".count($members)." found.</span>";
                echo "</table>";               
            } else {
@@ -84,7 +84,7 @@
            }
            echo "</table>";
            
-            
+       
         ?>
 	</div>
 	
