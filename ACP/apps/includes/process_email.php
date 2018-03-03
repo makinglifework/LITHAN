@@ -1,7 +1,33 @@
 <?php
+
+/**
+ * process_email.php 
+ * 
+ * Script validate email forms to block email header injection attacks.
+ * 
+ */
+
+/**
+ * @var boolean $suspect
+ */
 $suspect = false;
+
+/**
+ * Regular expression to match patterns of email headers
+ * 
+ * @var string $pattern
+ */
 $pattern = '/Content-type:|Bcc:|Cc:/i';
 
+/**
+ * Function to validate the post array
+ * 
+ * @param array $value
+ * @param string $pattern
+ * @param boolean $suspect
+ * 
+ * @return boolean
+ */
 function isSuspect($value, $pattern, &$suspect) {
     if (is_array($value)) {
         foreach ($value as $item) {

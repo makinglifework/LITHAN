@@ -1,6 +1,13 @@
 <?php
+/*
+ *Provides details of User class properties, User Profile class properties and Email list properties
+ */
+ 
     namespace core\acp;
     
+    /*
+     * @return object User properties
+     */
     class User {
         public $id;
         public $email;
@@ -11,6 +18,9 @@
         public $is_active;
     }
     
+    /*
+     * @teturn object User Profile properties
+     */
     class UserProfile {
         public $id;
         public $email;
@@ -25,6 +35,10 @@
         public $notification;
     }
     
+    
+    /*
+     * @teturn object Email list of users subscribed for email notification
+     */
     class EmailList {
         public $firstname;
         public $lastname;
